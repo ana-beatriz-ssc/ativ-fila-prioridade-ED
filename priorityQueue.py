@@ -18,10 +18,10 @@ class priorityQueue:
             self.head = new_node
 
         if (priority == True):
-            self.size_priority += 1
+            self.sizeP += 1
 
         else:
-            self.size_normal += 1
+            self.sizeN += 1
     
     def dequeue(self):
         if (self.head == None):
@@ -37,6 +37,8 @@ class priorityQueue:
             self.sizeP -= 1
         else:
             self.sizeN -= 1
+
+        return node_remove.name
 
     def size(self):
         return self.sizeP + self.sizeN

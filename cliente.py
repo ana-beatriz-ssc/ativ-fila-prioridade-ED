@@ -28,12 +28,12 @@ while True:
 
         if (modalidade == '1'):
             nome = input("Nome da pessoa: ")
-            #queue.enqueue(nome, True)
+            fila.enqueue(nome, True)
             print(f"Pronto. A pessoa '{nome}' foi adicionada na fila na modalidade PRIORIDADE")
             
         elif (modalidade == '2'):
             nome = input("Nome da pessoa: ")
-            #queue.dequeue(nome, False)
+            fila.enqueue(nome, False)
             print(f"Pronto. A pessoa '{nome}' foi adicionada na fila na modalidade NORMAL")
             
         else: 
@@ -41,15 +41,41 @@ while True:
 
     elif (op == '2'):
         print("-----------------------------------------------------")
+        if fila.is_empty(): #verifica se a fila está vazia
+            print("A fila está vazia!\n")
+        else:
+            for _ in range(3): #atende 3 pessoas normais 
+                if fila.sizeN > 0: #verifica se há pessoas na fila normal
+                    print(f"Atendendo: {fila.dequeue()} (normal)")
+                    atendimentos_normais += 1 #incrementa um atendimento
+                else:
+                    break #se não houve pessoas na fila ele para
+            if fila.sizeP > 0:
+                print(f"Atendendo: {fila.dequeue()} (prioridade)")
+                atendimentos_prioridade += 1 #incrementa um atendimento
 
     elif (op == '3'):
         print("-----------------------------------------------------")
+        if fila.is_empty():
+            print("A fila está vazia!")
+        else:
+            print("--------FILA--------")
+            fila.list()
 
     elif (op == '4'):
         print("-----------------------------------------------------")
+        print("INFORMAÇÕES DOS ATENDIMENTOS:")
+        print(f"ATENDIMENTOS NORMAIS: {atendimentos_normais}, ATENDIMENTOS PRIORITÁRIOS: {atendimentos_prioridade}")
+        print(f"TAMANHO ATUAL DA FILA:\nNORMAIS: {fila.sizeN}, PRIORITÁRIOS: {fila.sizeP}")
 
     elif (op == '5'):
         print("-----------------------------------------------------")
+        if fila.is_empty():
+            total = atendimentos_normais + atendimentos_prioridade
+            if total > 0:
+                percentual_normal = (atendimentos_normais/total) * 100
+                percentual_prioridade = (atendimentos_prioridade/total) * 100
+
 
     else:
         print("-----------------------------------------------------")
