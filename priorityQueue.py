@@ -33,7 +33,13 @@ class priorityQueue:
         if (self.head == None):
             self.tail = None
 
-        
+        if (node_remove.priority == True):
+            self.sizeP -= 1
+        else:
+            self.sizeN -= 1
+
+    def size(self):
+        return self.sizeP + self.sizeN
 
 
     def list(self): #listar todas as pessoas da fila
